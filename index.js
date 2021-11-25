@@ -8,14 +8,29 @@ const routerPersonas = new Router();
 
 const PORT = 8080;
 
+let personas = ["homero", "bart", "moe"];
+let mascotas = ["gato", "perro", "canario"];
+
+
+
 
 routerMascotas.get('/', (req, res, next) => {
-    res.send('ok mascotas');
+    res.json(mascotas);
+});
+
+routerMascotas.post('/', (req, res, next) => {
+    mascotas.push(req.query.nuevo);
+    res.json(mascotas);
 });
 
 routerPersonas.get('/', (req, res, next) => {
-    res.send('ok personas');
+    res.json(personas);
 });
+
+routerPersonas.post('/', (req, res, next) => {
+    personas.push(req.query.nuevo);
+    res.send(personas); 
+})
 
 
 
