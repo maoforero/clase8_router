@@ -8,10 +8,14 @@ const routerPersonas = new Router();
 
 const PORT = 8080;
 
+let path =  require('path');
+
 let personas = ["homero", "bart", "moe"];
 let mascotas = ["gato", "perro", "canario"];
 
-
+app.use('/mascotas', routerMascotas);
+app.use('/personas', routerPersonas);
+app.use('/formulario', express.static(path.join(__dirname, "public", "html")));
 
 
 routerMascotas.get('/', (req, res, next) => {
@@ -32,10 +36,6 @@ routerPersonas.post('/', (req, res, next) => {
     res.send(personas); 
 })
 
-
-
-app.use('/mascotas', routerMascotas);
-app.use('/personas', routerPersonas);
 
 app.get('/', (req, res, next) => {
     res.send('home');
